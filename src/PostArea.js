@@ -22,7 +22,7 @@ function PostArea() {
             <PostElement mediaType="video" media={test_post_video} likeCount="10" profilePicture={test_pp_icon} time="6s" username="yavuzyigitmuhammetali" explanation="explanation..."/>
             {datapost.length?
                 datapost.map(u=>
-                    <PostElement media={u.images.standard_resolution.url} likeCount="0" profilePicture={u.caption.from.profile_picture} time="6s" username={u.caption.from.username} explanation={u.caption.text}/>
+                    <PostElement media={u.images.standard_resolution.url} likeCount="0" profilePicture={u.caption.from.profile_picture} time={u.caption.created_time} username={u.caption.from.username} explanation={u.caption.text}/>
                 ) :
                 <div></div>
             }

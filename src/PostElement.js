@@ -4,6 +4,8 @@ import comment_icon from "./photos/bubble-chat.png"
 import send_icon from "./photos/send.png"
 import save_icon from "./photos/flag.png"
 
+import TimeAgo from 'timeago-react';
+
 function PostElement({mediaType='photo',media,profilePicture,username,time,likeCount=0,explanation=""}) {
     const [isLiked, setIsLiked] = useState(false);
 
@@ -13,7 +15,11 @@ function PostElement({mediaType='photo',media,profilePicture,username,time,likeC
                 <div className="post-element-upper-bar">
                     <img className="post-element-upper-bar-icon" src={profilePicture} alt="pp"/>
                     <div className="post-element-upper-bar-username">{username}</div>
-                    <div className="post-element-upper-bar-date"> • {time}</div>
+                    <div className="post-element-upper-bar-date"> • &nbsp;
+                        <TimeAgo
+                          datetime={time*1000}
+                        />
+                    </div>
                     <div className="post-element-upper-bar-button"><a className="post-element-upper-bar-button"
                                                                       href="/#">•••</a></div>
                 </div>
