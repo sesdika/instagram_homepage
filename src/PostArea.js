@@ -11,7 +11,7 @@ import axios from "axios"
 function PostArea() {
     const [datapost, setDatapost] = useState([])
     useEffect(() => {
-        axios.get("https://api.jsonbin.io/v3/b/63bd23fe15ab31599e3290c1")  
+        axios.get("https://private-4838f9-sesdika.apiary-mock.com/igs_complete")  
             .then(response => setDatapost(response.data.record.data))
             .catch(err => console.log(err)) 
     }, []);
@@ -22,7 +22,12 @@ function PostArea() {
             <PostElement mediaType="video" media={test_post_video} likeCount="10" profilePicture={test_pp_icon} time="6s" username="yavuzyigitmuhammetali" explanation="explanation..."/>
             {datapost.length?
                 datapost.map(u=>
-                    <PostElement media={u.images.standard_resolution.url} likeCount="0" profilePicture={u.caption.from.profile_picture} time={u.caption.created_time} username={u.caption.from.username} explanation={u.caption.text}/>
+                    <PostElement media={u.images.standard_resolution.url} likeCount={u.likes.count}  
+                        profilePicture={u.caption.from.profile_picture} time={u.caption.created_time} 
+                        username={u.caption.from.username} explanation={u.caption.text}
+                        user_has_liked={u.user_has_liked} n_comments={u.comments.count}
+                        comments={u.comments.data}
+                    />
                 ) :
                 <div></div>
             }
