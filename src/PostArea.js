@@ -7,7 +7,6 @@ import test_post_video
 
 import axios from "axios"
 
-
 function PostArea() {
     const [datapost, setDatapost] = useState([])
     useEffect(() => {
@@ -23,8 +22,8 @@ function PostArea() {
             {datapost.length?
                 datapost.map(u=>
                     <PostElement media={u.images.standard_resolution.url} likeCount={u.likes.count}  
-                        profilePicture={u.caption.from.profile_picture} time={u.caption.created_time} 
-                        username={u.caption.from.username} explanation={u.caption.text}
+                        profilePicture={u.user.profile_picture} time={u.caption.created_time} 
+                        username={u.user.username} explanation={u.caption.text}
                         user_has_liked={u.user_has_liked} n_comments={u.comments.count}
                         comments={u.comments.data}
                     />
