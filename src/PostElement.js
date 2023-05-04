@@ -12,6 +12,13 @@ import ShareModal from "./ShareModal";
 function PostElement({mediaType='photo',media,profilePicture,username,time,likeCount=0,explanation="",user_has_liked=false,n_comments=0,comments=[]}) {
     const [isLiked, setIsLiked] = useState(user_has_liked);
     const [isSaved, setIsSaved] = useState(false);
+    const [thiscomments, setThiscomments] = useState(comments);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            setThiscomments(thiscomments => [...thiscomments, { "text" : event.target.value, "from" : { "username" : "sesdika" } }])
+        }
+    };
 
     return (
         <div>
@@ -70,18 +77,18 @@ function PostElement({mediaType='photo',media,profilePicture,username,time,likeC
                     style={{margin: 0}}>{username}</h4>&nbsp;&nbsp;
                     <div>{explanation}</div>
                 </div>
+                <div className="view-all-comments">View all {n_comments} comments</div>
                 {n_comments ?
-                    <>
-                        <div className="view-all-comments">View all {n_comments} comments</div>
+                    thiscomments.map(comment=>
                         <div style={{display: "flex", flexDirection: "row"}}>
-                            <h4 style={{margin: 0}}>{comments[0].from.username}</h4>&nbsp;&nbsp;
-                            <div>{comments[0].text}</div>
+                            <h4 style={{margin: 0}}>{comment.from.username}</h4>&nbsp;&nbsp;
+                            <div>{comment.text}</div>
                         </div>
-                    </>
+                    )
                 : <div></div>
                 }
                 <div><input className="post-element-bottom-bar-comment-area" type="text"
-                            placeholder="Add a comment..."/></div>
+                            placeholder="Add a comment..." onKeyDown={handleKeyDown}/></div>
             </div>
         </div>
     );
