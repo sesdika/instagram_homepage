@@ -5,6 +5,7 @@ import send_icon from "./photos/send.png"
 import save_icon from "./photos/flag.png"
 
 import TimeAgo from 'timeago-react';
+import ModalInFunctionalComponent from "./Modal";
 
 function PostElement({mediaType='photo',media,profilePicture,username,time,likeCount=0,explanation="",user_has_liked=false,n_comments=0,comments=[]}) {
     const [isLiked, setIsLiked] = useState(user_has_liked);
@@ -49,6 +50,7 @@ function PostElement({mediaType='photo',media,profilePicture,username,time,likeC
                         </div>
                         <div><img src={comment_icon} alt="comments" width="24px"/></div>
                         <div><img src={send_icon} alt="comments" width="24px"/></div>
+                        <ModalInFunctionalComponent/>
                         <div><img src={save_icon} alt="comments" style={{position: "absolute", right: "0"}} height="26px"/>
                     </div>
 
