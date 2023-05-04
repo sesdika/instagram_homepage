@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import Modal from 'react-modal';
-import AnimeList from './AnimeList';
+import send_icon from "./photos/send.png"
 
-import {Link, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-function ModalInFunctionalComponent (){
+function ShareModal (){
 
     const [modalIsOpen,setModalIsOpen] = useState(false);
 
@@ -28,21 +28,9 @@ function ModalInFunctionalComponent (){
         }
     };
 
-
-    // return(
-    //     <>
-    //         <button onClick={setModalIsOpenToTrue}>Click to Open Modal</button>
-
-    //         <Modal isOpen={modalIsOpen} style={customStyles} onRequestClose={()=> setModalIsOpen(false)}>
-    //             <button onClick={setModalIsOpenToFalse}>x</button>
-    //             <AnimeList/>
-    //         </Modal>
-    //     </>
-    // )
-
     return (
         <div>
-            <button onClick={setModalIsOpenToTrue}>Click to Open Modal</button>
+            <Link onClick={setModalIsOpenToTrue}><img src={send_icon} width="24px"/></Link>
 
             <Modal isOpen={modalIsOpen} onRequestClose={()=> setModalIsOpen(false)} className={customStyles}>
                 <div className="message-page-send-message-box-container">
@@ -74,4 +62,4 @@ function ModalInFunctionalComponent (){
         </div>
     );
 }
-export default ModalInFunctionalComponent;
+export default ShareModal;
